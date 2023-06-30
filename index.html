@@ -10,7 +10,7 @@
     <meta name="theme-color" content="#000000">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>REd Hidromçetrica SIL</title>
+    <title>Calidad de Agua </title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -48,28 +48,17 @@
 <body>
     <div id="map"></div>
     <script>
-    var marcador_rojo = L.icon({
-        iconUrl: "./images/red_c_marker.png",
-        iconSize: [20, 20], // size of the icon
-        //shadowSize: [50, 64], // size of the shadow
-        //iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-        //shadowAnchor: [4, 62], // the same for the shadow
-        //popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+    var marcador = L.icon({
+        iconUrl: "./images/WQ_ico.png",
+        iconSize: [35, 35], // size of the icon
+        // shadowSize: [80, 90], // size of the shadow
+        // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+        // shadowAnchor: [80, 90], // the same for the shadow
+        // popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
         });
 
-        var marcador_azul = L.icon({
-        iconUrl: "./img/blue_c_marker.png",
-        iconSize: [20, 20], // size of the icon
-        //shadowSize: [50, 64], // size of the shadow
-        //iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-        //shadowAnchor: [4, 62], // the same for the shadow
-        //popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
-        });
-
-
-
-        // Varios Mapas Base 
-        var Google = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { foo: 'bar', attribution: '&copy; <a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>' }),
+     // Varios Mapas Base 
+        var Google = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { foo: 'bar', attribution: '&copy; <a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2023 Google</a>' }),
             OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }),
             CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -78,104 +67,93 @@
             });
 
         // Varios Marcadores segun tipo (Proyectos)
-        var Ichocollo = L.marker([-15.66680, -70.82266], {
-                icon: marcador_rojo,
+        var AAR_minsur = L.marker([-15.44076, -70.59655], {
+                icon: marcador,
                 draggable: false,
-                title: "Río Ichocollo",
-                attribution: "<a href='https://hugoaluque.github.io/Hector-Hugo-Anamuro-Luque/'target='blank'> By HugoAñamuro</a> ",
-            }).bindPopup("<iframe width='650' height='350' src='https://datastudio.google.com/embed/reporting/532ddce7-2923-4c65-a12b-8f95c4088471/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", { maxWidth: "auto" }),
-            garganta_larga = L.marker([-15.72068, -70.70347], {
-                icon: marcador_rojo,
+                title: "Aguas Arriba Minsur",
+                //attribution: "<a href='https://hugoaluque.github.io/Hector-Hugo-Anamuro-Luque/'target='blank'> By HugoAñamuro</a> ",
+            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            AAB_minsur = L.marker([-15.46717, -70.64026], {
+                icon: marcador,
                 draggable: false,
-                title: "Aforador Garganta Larga",
-            }).bindPopup("<iframe width='650' height='350' src='https://datastudio.google.com/embed/reporting/a576f07e-f55c-41d2-8161-83497f5c1e6d/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", { maxWidth: "auto" }),
-            boca_cabana_mañazo = L.marker([-15.65959, -70.46939], {
-                icon: marcador_rojo,
+                title: "Aguas Abajo Minsur",
+            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            AAR_santa_lucia = L.marker([-15.59772, -70.72043], {
+                icon: marcador,
                 draggable: false,
-                title: "Bocatoma Cabana - Mañazo",
-            }).bindPopup("<iframe width='650' height='350' src='https://datastudio.google.com/embed/reporting/be0b3fe5-cfed-4f9d-9632-46668e0ab318/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", { maxWidth: "auto" }),
-            boca_huataquita = L.marker([-15.65734, -70.46796], {
-                icon: marcador_rojo,
+                title: "Aguas Arriba Santa Lucia",
+            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            AAB_santa_lucia = L.marker([-15.68441, -70.59994], {
+                icon: marcador,
                 draggable: false,
-                title: "Bocatoma Huataquita",
-            }).bindPopup("<iframe width='650' height='350' src='https://datastudio.google.com/embed/reporting/5d9cb5f6-5a8a-457d-88ae-5dd450d0bd58/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", { maxWidth: "auto" }),
-            captacion_huataquita = L.marker([-15.67904, -70.40971], {
-                icon: marcador_rojo,
+                title: "Aguas Abajo Santa Lucia",
+            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            Rio_cerrillos = L.marker([-15.68796, -70.64192], {
+                icon: marcador,
                 draggable: false,
-                title: "Captación Huataquita - Callapoca",
-            }).bindPopup("<iframe width='650' height='350' src='https://datastudio.google.com/embed/reporting/79029ba9-6be8-41a9-8e2b-d00f79809adb/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", { maxWidth: "auto" }),
-            bocatoma_cabanilla = L.marker([-15.67103, -70.38460], {
-                icon: marcador_rojo,
+                title: "Río Cerrillos",
+            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            AAR_cabanillas = L.marker([-15.67828, -70.40746], {
+                icon: marcador,
                 draggable: false,
-                title: "Bocatoma Cabanilla",
-            }).bindPopup("<iframe width='650' height='350' src='https://datastudio.google.com/embed/reporting/819988fc-fbd0-4f4b-9aff-0f4e19cc49c4/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", { maxWidth: "auto" }),
-            canal_cabana = L.marker([-15.70628, -70.35953], {
-                icon: marcador_rojo,
+                title: "Aguas Arriba Cabanillas",
+            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            AAB_cabanillas = L.marker([-15.63758, -70.34867], {
+                icon: marcador,
                 draggable: false,
-                title: "Canal Principal Cabana",
-            }).bindPopup("<iframe width='650' height='350' src='https://datastudio.google.com/embed/reporting/737ed00c-5b58-42a9-8444-cbbafe8102f8/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", { maxWidth: "auto" }),
-            canal_mañazo = L.marker([-15.70673, -70.35971], {
-                icon: marcador_rojo,
+                title: "Aguas Abajo Cabanillas",
+            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            Rio_cabanillas = L.marker([-15.58205, -70.29095], {
+                icon: marcador,
                 draggable: false,
-                title: "Canal Principal Mañazo",
-            }).bindPopup("<iframe width='650' height='350' src='https://datastudio.google.com/embed/reporting/d21cf873-79d6-457c-8ba4-c7576a0e5a9c/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", { maxWidth: "auto" }),
-            bocatoma_yanarico = L.marker([-15.62643, -70.33333], {
-                icon: marcador_rojo,
+                title: "Río Cabanillas",
+            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            Puente_Lampa = L.marker([-15.37300, -70.36633], {
+                icon: marcador,
                 draggable: false,
-                title: "Bocatoma Yanarico",
-            }).bindPopup("<iframe width='650' height='350' src='https://datastudio.google.com/embed/reporting/863d79c1-b609-48aa-9c7f-11bc94147cf0/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", { maxWidth: "auto" }),
-            bocatoma_yocara = L.marker([-15.59562, -70.29974], {
-                icon: marcador_rojo,
+                title: "Puente Lampa",
+            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            Puente_Moyogachi = L.marker([-15.37163, -70.36692], {
+                icon: marcador,
                 draggable: false,
-                title: "Bocatoma Yocará",
-            }).bindPopup("<iframe width='650' height='350' src='https://datastudio.google.com/embed/reporting/ab16556c-6c20-4002-90a7-d99c047374b0/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", { maxWidth: "auto" }),
-            bocatoma_canteria = L.marker([-15.55887, -70.26945], {
-                icon: marcador_rojo,
+                title: "Puente_Moyogachi",
+            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            Puente_unocolla = L.marker([-15.45189, -70.19111], {
+                icon: marcador,
                 draggable: false,
-                title: "Bocatoma Canteria",
-            }).bindPopup("<iframe width='650' height='350' src='https://datastudio.google.com/embed/reporting/3fbba1ab-9326-40e8-a348-3e7c3af06de0/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", { maxWidth: "auto" }),
-            captacion_sedaj = L.marker([-15.46719, -70.10607], {
-                icon: marcador_rojo,
+                title: "Puente Unocolla",
+            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            Almozanche = L.marker([-15.56544, -69.95643], {
+                icon: marcador,
                 draggable: false,
-                title: "Captación Seda Juliaca",
-            }).bindPopup("<iframe width='650' height='350' src='https://datastudio.google.com/embed/reporting/30c22d30-ec24-4af1-aef9-de74b721b047/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", { maxWidth: "auto" })
-
+                title: "Cerca Almozanche",
+            }).bindPopup("En Construcción", { maxWidth: "auto" })
         ;
 
 
 
         //Agrupando los Marcadores de Tipo Proyecto
-        var Captacion = L.layerGroup([Ichocollo, garganta_larga, boca_cabana_mañazo]);
+        var PM_Coata = L.layerGroup([AAR_minsur,AAB_minsur,AAR_santa_lucia,AAB_santa_lucia,
+                                    Rio_cerrillos,AAR_cabanillas,AAB_cabanillas, Rio_cabanillas,
+                                    Puente_Lampa,Puente_Moyogachi,Puente_unocolla,Almozanche]);
 
-        //Agrupando los Marcadores de Tipo Estudio
-        var Distribución = L.layerGroup([boca_huataquita, captacion_huataquita, bocatoma_cabanilla, canal_cabana, canal_mañazo, bocatoma_yanarico,
-            bocatoma_yocara, bocatoma_canteria, captacion_sedaj
-        ]);
-
-        //Afluentes Ichocollo
-
-
-
-
-        // Agrpando los Marcadores de Tipo Idea de Proyecto
+       // Agrpando los Marcadores de Tipo Idea de Proyecto
 
         //var Idea = L.layerGroup([asillo, acora_totorani, conavire]);
 
         //Agregando los grupos de Capas al Mapa
         var map = L.map('map', {
-            center: [-15.67758, -70.39955],
+            center: [-15.52504, -70.39318],
             zoom: 11,
             maxBounds: [
                 //surOeste
-                [-15.847102, -70.026775],
+                [-16.38392, -68.96844],
                 //norEste
-                [-15.421305, -70.841130]
+                [-14.90948, -71.25341]
             ],
 
-            layers: [OpenStreetMap_Mapnik, Captacion, Distribución]
+            layers: [Google, PM_Coata]
         });
-
-
 
         // Agrupando los Mapas Base
         var baseMaps = {
@@ -184,13 +162,11 @@
             "Cartografía Oscura": CartoDB_DarkMatter
         };
 
-
-
         // Creando Capas de Marcadores
         var Capas = {
-            '<img src="./img/red_c_marker.png" width="15" height="15"/> Red de Captación': Captacion,
+            '<img src="./images/WQ_ico.png" width="15" height="15"/> Estaciones Cuenca del Río Coata': PM_Coata,
             //'<img src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png" width="10" height="15"/> Estudios': Estudio,
-            '<img src="./img/blue_c_marker.png" width="15" height="15"/> Red de Distribución': Distribución,
+            // '<img src="./img/blue_c_marker.png" width="15" height="15"/> Red de Distribución': Distribución,
         };
 
 
@@ -205,7 +181,7 @@
         L.Control.Watermark=L.Control.extend({
                     onAdd:function(map){
                         var img = L.DomUtil.create('img');
-                        img.src = 'img/PEBLT.png';
+                        img.src = './images/PEBLT.png';
                         img.style.width = '150px';
                         return img;
                         },
@@ -214,7 +190,7 @@
                         L.control.watermark = function(opts){
                             return new L.Control.Watermark(opts);
                             }
-                        L.control.watermark({position:'bottomright'}).addTo(map);
+                        L.control.watermark({position:'topright'}).addTo(map);
 
     </script>
 </body>
