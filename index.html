@@ -48,26 +48,32 @@
 <body>
     <div id="map"></div>
     <script>
-    var marcador = L.icon({
-        iconUrl: "./images/WQ_ico.png",
-        iconSize: [25, 25], // size of the icon
-        // shadowSize: [80, 90], // size of the shadow
-        // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-        // shadowAnchor: [80, 90], // the same for the shadow
-        // popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+        var marcador = L.icon({
+            iconUrl: "./images/WQ_ico.png",
+            iconSize: [25, 25], // size of the icon
+            // shadowSize: [80, 90], // size of the shadow
+            // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+            // shadowAnchor: [80, 90], // the same for the shadow
+            // popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
         });
-    var marcador_Lagunillas = L.icon({
-        iconUrl: "./images/red_marker.png",
-        iconSize: [20, 20], // size of the icon
-        // shadowSize: [80, 90], // size of the shadow
-        // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-        // shadowAnchor: [80, 90], // the same for the shadow
-        // popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
-        });    
+        var marcador_Lagunillas = L.icon({
+            iconUrl: "./images/red_marker.png",
+            iconSize: [20, 20], // size of the icon
+            // shadowSize: [80, 90], // size of the shadow
+            // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+            // shadowAnchor: [80, 90], // the same for the shadow
+            // popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
 
-     // Varios Mapas Base 
-        var Google = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { foo: 'bar', attribution: '&copy; <a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2023 Google</a>' }),
-            OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }),
+        // Varios Mapas Base 
+        var Google = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+                foo: 'bar',
+                attribution: '&copy; <a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2023 Google</a>'
+            }),
+            OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }),
             CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
                 subdomains: 'abcd',
@@ -80,142 +86,192 @@
                 draggable: false,
                 title: "Aguas Arriba Minsur",
                 //attribution: "<a href='https://hugoaluque.github.io/Hector-Hugo-Anamuro-Luque/'target='blank'> By HugoAñamuro</a> ",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             AAB_minsur = L.marker([-15.46717, -70.64026], {
                 icon: marcador,
                 draggable: false,
                 title: "Aguas Abajo Minsur",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             Puente_choroma = L.marker([-15.59772, -70.72043], {
                 icon: marcador,
                 draggable: false,
                 title: "Puente Choroma",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             AAB_santa_lucia = L.marker([-15.68118, -70.59243], {
                 icon: marcador,
                 draggable: false,
                 title: "Aguas Abajo Santa Lucia",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             Rio_cerrillos = L.marker([-15.68796, -70.64192], {
                 icon: marcador,
                 draggable: false,
                 title: "Puente Cerrillos",
-            }).bindPopup("<iframe width='650' height='320' src='https://lookerstudio.google.com/embed/reporting/859cf884-252a-4695-a708-7a38421fa7c6/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", { maxWidth: "auto" }),
+            }).bindPopup("<iframe width='650' height='300' src='https://lookerstudio.google.com/embed/reporting/859cf884-252a-4695-a708-7a38421fa7c6/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", {
+                maxWidth: "auto"
+            }),
             AAR_cabanillas = L.marker([-15.67828, -70.40746], {
                 icon: marcador,
                 draggable: false,
                 title: "Aguas Arriba Cabanillas",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             AAB_cabanillas = L.marker([-15.63016, -70.33799], {
                 icon: marcador,
                 draggable: false,
                 title: "Aguas Abajo Cabanillas",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             Puente_Isla = L.marker([-15.47190, -70.22409], {
                 icon: marcador,
                 draggable: false,
                 title: "Puente Isla",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             AAB_Lampa = L.marker([-15.38054, -70.36198], {
                 icon: marcador,
                 draggable: false,
                 title: "Aguas Abajo Lampa",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             Puente_Moyogachi = L.marker([-15.44357, -70.20921], {
                 icon: marcador,
                 draggable: false,
                 title: "Puente_Moyogachi",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             Puente_unocolla = L.marker([-15.45189, -70.19111], {
                 icon: marcador,
                 draggable: false,
                 title: "Puente Unocolla",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             Almozanche = L.marker([-15.56544, -69.95643], {
                 icon: marcador,
                 draggable: false,
                 title: "Aguas Arriba Coata",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             /// PUNTOS DE MONITOREO LAGUNA LAGUNILLAS
             L1 = L.marker([-15.72210, -70.70974], {
                 icon: marcador_Lagunillas,
                 draggable: false,
                 title: "Lagunillas - 01",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("<iframe width='650' height='300' src='https://lookerstudio.google.com/embed/reporting/4e552754-5e04-4114-9f56-6d3377ea60fb/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", {
+                maxWidth: "auto"
+            }),
             L2 = L.marker([-15.71351, -70.72242], {
                 icon: marcador_Lagunillas,
                 draggable: false,
                 title: "Lagunillas - 02",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             L3 = L.marker([-15.73735, -70.73042], {
                 icon: marcador_Lagunillas,
                 draggable: false,
                 title: "Lagunillas - 03",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             L4 = L.marker([-15.74705, -70.72861], {
                 icon: marcador_Lagunillas,
                 draggable: false,
                 title: "Lagunillas - 04",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             L5 = L.marker([-15.74764, -70.71973], {
                 icon: marcador_Lagunillas,
                 draggable: false,
                 title: "Lagunillas - 05",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             L6 = L.marker([-15.74901, -70.71041], {
                 icon: marcador_Lagunillas,
                 draggable: false,
                 title: "Lagunillas - 06",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             L7 = L.marker([-15.74542, -70.69952], {
                 icon: marcador_Lagunillas,
                 draggable: false,
                 title: "Lagunillas - 07",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             L8 = L.marker([-15.75779, -70.69081], {
                 icon: marcador_Lagunillas,
                 draggable: false,
                 title: "Lagunillas - 08",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             L9 = L.marker([-15.76562, -70.67162], {
                 icon: marcador_Lagunillas,
                 draggable: false,
                 title: "Lagunillas - 09",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             L10 = L.marker([-15.75651, -70.66875], {
                 icon: marcador_Lagunillas,
                 draggable: false,
                 title: "Lagunillas - 10",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             L11 = L.marker([-15.74945, -70.67530], {
                 icon: marcador_Lagunillas,
                 draggable: false,
                 title: "Lagunillas - 11",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             L12 = L.marker([-15.72848, -70.70661], {
                 icon: marcador_Lagunillas,
                 draggable: false,
                 title: "Lagunillas - 12",
-            }).bindPopup("En Construcción", { maxWidth: "auto" }),
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            }),
             PBlanco = L.marker([-15.72261, -70.74300], {
                 icon: marcador_Lagunillas,
                 draggable: false,
                 title: "Lagunillas - Punto Blanco",
-            }).bindPopup("En Construcción", { maxWidth: "auto" })
-        ;
+            }).bindPopup("En Construcción", {
+                maxWidth: "auto"
+            });
 
 
 
         //Agrupando los Marcadores de puntos de monitoreo de Río Coata
-        var PM_Coata = L.layerGroup([AAR_minsur,AAB_minsur,Puente_choroma,AAB_santa_lucia,
-                                    Rio_cerrillos,AAR_cabanillas,AAB_cabanillas, Puente_Isla,
-                                    AAB_Lampa,Puente_Moyogachi,Puente_unocolla,Almozanche]);
+        var PM_Coata = L.layerGroup([AAR_minsur, AAB_minsur, Puente_choroma, AAB_santa_lucia,
+            Rio_cerrillos, AAR_cabanillas, AAB_cabanillas, Puente_Isla,
+            AAB_Lampa, Puente_Moyogachi, Puente_unocolla, Almozanche
+        ]);
 
         //Agrupando los marcadores de puntos de monitoreo de Lagunillas
-        
-        var PM_Lagunillas = L.layerGroup([L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,PBlanco]);
 
-       // Agrpando los Marcadores de Tipo Idea de Proyecto
+        var PM_Lagunillas = L.layerGroup([L1, L2, L3, L4, L5, L6, L7, L8, L9, L10, L11, L12, PBlanco]);
+
+        // Agrpando los Marcadores de Tipo Idea de Proyecto
 
         //var Idea = L.layerGroup([asillo, acora_totorani, conavire]);
 
@@ -230,7 +286,7 @@
                 [-14.90948, -71.25341]
             ],
 
-            layers: [Google, PM_Coata,PM_Lagunillas]
+            layers: [Google, PM_Coata, PM_Lagunillas]
         });
 
         // Agrupando los Mapas Base
@@ -256,20 +312,21 @@
 
         //Adicionando Logo Institucional
 
-        L.Control.Watermark=L.Control.extend({
-                    onAdd:function(map){
-                        var img = L.DomUtil.create('img');
-                        img.src = './images/PEBLT.png';
-                        img.style.width = '150px';
-                        return img;
-                        },
-                        onRemove:function(map){},
-                        });
-                        L.control.watermark = function(opts){
-                            return new L.Control.Watermark(opts);
-                            }
-                        L.control.watermark({position:'topright'}).addTo(map);
-
+        L.Control.Watermark = L.Control.extend({
+            onAdd: function(map) {
+                var img = L.DomUtil.create('img');
+                img.src = './images/PEBLT.png';
+                img.style.width = '150px';
+                return img;
+            },
+            onRemove: function(map) {},
+        });
+        L.control.watermark = function(opts) {
+            return new L.Control.Watermark(opts);
+        }
+        L.control.watermark({
+            position: 'topright'
+        }).addTo(map);
     </script>
 </body>
 
