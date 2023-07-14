@@ -279,6 +279,7 @@
         var map = L.map('map', {
             center: [-15.52504, -70.39318],
             zoom: 10,
+            zoomControl: false,
             maxBounds: [
                 //surOeste
                 [-16.38392, -68.96844],
@@ -286,8 +287,21 @@
                 [-14.90948, -71.25341]
             ],
 
-            layers: [Google, PM_Coata, PM_Lagunillas]
+            layers: [Google, PM_Coata]
         });
+
+        //BARRA DE ZOOM
+        var barraZoom = new L.Control.ZoomBar({
+            position: 'topleft'
+        }).addTo(map);
+
+        //Adicionando Geolocalizador
+        var ubicacion = L.control.locate({
+            position: 'topleft',
+            strings: {
+                title: "Buscar mi Ubicación"
+            }
+        }).addTo(map);
 
         // Agrupando los Mapas Base
         var baseMaps = {
@@ -300,15 +314,22 @@
         var Capas = {
             '<img src="./images/WQ_ico.png" width="25" height="25"/> Estaciones Cuenca del Río Coata': PM_Coata,
             //'<img src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png" width="10" height="15"/> Estudios': Estudio,
-            '<img src="./images/red_marker.png" width="25" height="25"/> Estaciones Laguna Lagunillas': PM_Lagunillas,
+            '<img src="./images/red_marker.png" width="25" height="25"/> Estaciones Embalse Lagunillas': PM_Lagunillas,
         };
 
+        //barra de escala
+        L.control.scale({
+            position: 'bottomleft',
+            metric: true,
+        }).addTo(map);
 
         // Creando Control de Capas
         L.control.layers(baseMaps, Capas, {
             position: 'bottomleft',
             collapsed: false
         }).addTo(map);
+
+
 
         //Adicionando Logo Institucional
 
@@ -326,6 +347,33 @@
         }
         L.control.watermark({
             position: 'topright'
+        }).addTo(map);
+
+        // Creando leyenda de Descrpicion del portal 
+        const legend = L.control({
+            position: "bottomleft" // bottomleft  bottomright
+        });
+
+        legend.onAdd = function() {
+            let div = L.DomUtil.create("div", "description");
+            L.DomEvent.disableClickPropagation(div);
+            const text =
+                "<b>Descripción 🌏🌎🛤🛤🚽🧻🚿🚨 </b><br><br> Alguna descripción  ";
+            div.insertAdjacentHTML("beforeend", text);
+            return div;
+        };
+        legend.addTo(map);
+
+        // Creando Minimapa
+        var goo = new L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+            foo: 'bar',
+
+        })
+
+
+        var miniMap = new L.Control.MiniMap(goo, {
+            toggleDisplay: true,
+            position: 'bottomright',
         }).addTo(map);
     </script>
 </body>
