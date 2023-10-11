@@ -25,7 +25,9 @@
     <link rel="stylesheet" href="css/leaflet-search.css" />
     <link rel="stylesheet" href="css/Control.MiniMap.css" />
     <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/gh/cferdinandi/tabby@12.0.0/dist/css/tabby-ui.min.css">
+  
     <link rel="apple-touch-icon" sizes="76x76" href="images/favicon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="images/favicon-120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="images/favicon-152.png">
@@ -42,7 +44,7 @@
     <script src="js/L.Control.MousePosition.js"></script>
     <script src="js/leaflet-search.js"></script>
     <script src="js/Control.MiniMap.js" type="text/javascript"></script>
-
+   
 </head>
 
 <body>
@@ -171,7 +173,19 @@
                 icon: marcador_Lagunillas,
                 draggable: false,
                 title: "Lagunillas - 01",
-            }).bindPopup("<iframe width='650' height='300' src='https://lookerstudio.google.com/embed/reporting/4e552754-5e04-4114-9f56-6d3377ea60fb/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>", {
+            }).bindPopup(`
+                            <div id="tabs">
+                                <ul>
+                                    <li><a href="#tab1">Tab 1</a></li>
+                                    <li><a href="#tab2">Tab 2</a></li>
+                                </ul>
+                                <div id="tab1">
+                                    <iframe width='600' height='310' src='https://lookerstudio.google.com/embed/reporting/78452f3c-a74f-4d3f-856c-c0e5c425ad72/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>
+                                </div>
+                                <div id="tab2">
+                                    <iframe width='600' height='310' src='https://lookerstudio.google.com/embed/reporting/fcf44d45-009c-4e61-98b8-fe3e348acbae/page/qX5SC' frameborder='0' style='border:0' allowfullscreen></iframe>
+                                </div>
+                            </div> `, {
                 maxWidth: "auto"
             }),
             L2 = L.marker([-15.71351, -70.72242], {
